@@ -1,0 +1,57 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+*.*~
+client/snapclient
+server/snapserver
+.vscode
+GPATH
+GRTAGS
+GTAGS
+build
+bin
+android/.idea
+android/Octaviocast/release
+
+# debian packages
+debian/.debhelper
+debian/snapclient
+debian/snapserver
+debian/debhelper-build-stamp
+debian/snapclient.debhelper.log
+debian/snapserver.debhelper.log
+debian/files
+debian/snapclient.postinst.debhelper
+debian/snapclient.postrm.debhelper
+debian/snapclient.prerm.debhelper
+debian/snapclient.substvars
+debian/snapserver.postinst.debhelper
+debian/snapserver.postrm.debhelper
+debian/snapserver.prerm.debhelper
+debian/snapserver.substvars
