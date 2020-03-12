@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(octaviocast LANGUAGES CXX VERSION 0.19.0)
+project(snapcast LANGUAGES CXX VERSION 0.19.0)
 set(PROJECT_DESCRIPTION "Multiroom client-server audio player")
 set(PROJECT_URL "https://github.com/badaix/snapcast")
 
-option(BUILD_SHARED_LIBS "Build octaviocast in a shared context" ON)
-option(BUILD_STATIC_LIBS "Build octaviocast in a static context" ON)
+option(BUILD_SHARED_LIBS "Build snapcast in a shared context" ON)
+option(BUILD_STATIC_LIBS "Build snapcast in a static context" ON)
 option(BUILD_TESTS "Build tests (run tests with make test)" ON)
 
 option(BUILD_SERVER "Build Snapserver" ON)

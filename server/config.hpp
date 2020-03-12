@@ -154,13 +154,13 @@ struct ClientConfig
 
 
 
-struct Octaviocast
+struct Snapcast
 {
-    Octaviocast(const std::string& _name = "", const std::string& _version = "") : name(_name), version(_version), protocolVersion(1)
+    Snapcast(const std::string& _name = "", const std::string& _version = "") : name(_name), version(_version), protocolVersion(1)
     {
     }
 
-    virtual ~Octaviocast() = default;
+    virtual ~Snapcast() = default;
 
     virtual void fromJson(const json& j)
     {
@@ -184,29 +184,29 @@ struct Octaviocast
 };
 
 
-struct Snapclient : public Octaviocast
+struct Snapclient : public Snapcast
 {
-    Snapclient(const std::string& _name = "", const std::string& _version = "") : Octaviocast(_name, _version)
+    Snapclient(const std::string& _name = "", const std::string& _version = "") : Snapcast(_name, _version)
     {
     }
 };
 
 
-struct Snapserver : public Octaviocast
+struct Snapserver : public Snapcast
 {
-    Snapserver(const std::string& _name = "", const std::string& _version = "") : Octaviocast(_name, _version), controlProtocolVersion(1)
+    Snapserver(const std::string& _name = "", const std::string& _version = "") : Snapcast(_name, _version), controlProtocolVersion(1)
     {
     }
 
     void fromJson(const json& j) override
     {
-        Octaviocast::fromJson(j);
+        Snapcast::fromJson(j);
         controlProtocolVersion = jGet<int>(j, "controlProtocolVersion", 1);
     }
 
     json toJson() override
     {
-        json j = Octaviocast::toJson();
+        json j = Snapcast::toJson();
         j["controlProtocolVersion"] = controlProtocolVersion;
         return j;
     }

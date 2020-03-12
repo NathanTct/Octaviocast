@@ -134,8 +134,8 @@ install:
 	echo macOS
 	install -s -g wheel -o root $(BIN) $(TARGET_DIR)/local/bin/$(BIN)
 	install -g wheel -o root $(BIN).1 $(TARGET_DIR)/local/share/man/man1/$(BIN).1
-	install -g wheel -o root etc/$(BIN).plist /Library/LaunchAgents/de.badaix.octaviocast.$(BIN).plist
-	launchctl load /Library/LaunchAgents/de.badaix.octaviocast.$(BIN).plist
+	install -g wheel -o root etc/$(BIN).plist /Library/LaunchAgents/de.badaix.snapcast.$(BIN).plist
+	launchctl load /Library/LaunchAgents/de.badaix.snapcast.$(BIN).plist
 
 else
 
@@ -183,11 +183,11 @@ adduser:
 ifeq ($(TARGET), MACOS)
 
 uninstall:
-	@launchctl unload /Library/LaunchAgents/de.badaix.octaviocast.$(BIN).plist; \
+	@launchctl unload /Library/LaunchAgents/de.badaix.snapcast.$(BIN).plist; \
 	killall -9 $(BIN); \
 	rm -f $(TARGET_DIR)/local/bin/$(BIN); \
 	rm -f $(TARGET_DIR)/local/share/man/man1/$(BIN).1; \
-	rm -f /Library/LaunchAgents/de.badaix.octaviocast.$(BIN).plist; \
+	rm -f /Library/LaunchAgents/de.badaix.snapcast.$(BIN).plist; \
 
 else
 

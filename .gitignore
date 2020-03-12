@@ -37,7 +37,7 @@ GTAGS
 build
 bin
 android/.idea
-android/Octaviocast/release
+android/Snapcast/release
 
 # debian packages
 debian/.debhelper

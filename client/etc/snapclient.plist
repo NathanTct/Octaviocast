@@ -3,7 +3,7 @@
 <plist version="1.0">
 	<dict>
 		<key>Label</key>
-		<string>de.badaix.octaviocast.snapclient</string>
+		<string>de.badaix.snapcast.snapclient</string>
 		<key>ProgramArguments</key>
 		<array>
 			<string>/usr/local/bin/snapclient</string>

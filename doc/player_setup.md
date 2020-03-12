@@ -28,11 +28,11 @@ In this document some expressions are in brackets:
 
 For example:
 ```
-stream = spotify:///librespot?name=Spotify[&username=<my username>&password=<my password>][&devicename=Octaviocast][&bitrate=320]
+stream = spotify:///librespot?name=Spotify[&username=<my username>&password=<my password>][&devicename=Snapcast][&bitrate=320]
 ```
 * `username` and `password` are both optional in this case. You need to specify neither or both of them.
 * `bitrate` is optional. If not configured, `320` will be used.
-* `devicename` is optional. If not configured, `Octaviocast` will be used.
+* `devicename` is optional. If not configured, `Snapcast` will be used.
 
 For instance, a valid usage would be:
 ```
@@ -135,8 +135,8 @@ PulseAudio will create the pipe file for itself and will fail if it already exis
 
 Load the module `pipe-sink` like this:
 
-    pacmd load-module module-pipe-sink file=/tmp/snapfifo sink_name=Octaviocast format=s16le rate=48000
-    pacmd update-sink-proplist Octaviocast device.description=Octaviocast
+    pacmd load-module module-pipe-sink file=/tmp/snapfifo sink_name=Snapcast format=s16le rate=48000
+    pacmd update-sink-proplist Snapcast device.description=Snapcast
 
 It might be neccessary to set the PulseAudio latency environment variable to 60 msec: `PULSE_LATENCY_MSEC=60`
 
@@ -145,16 +145,16 @@ It might be neccessary to set the PulseAudio latency environment variable to 60 
 Snapserver supports [shairport-sync](https://github.com/mikebrady/shairport-sync) with the `stdout` backend.
  1. Build shairport-sync with `stdout` backend: `./configure --with-stdout --with-avahi --with-ssl=openssl --with-metadata`
  2. Copy the `shairport-sync` binary somewhere to your `PATH`, e.g. `/usr/local/bin/`
- 3. Configure snapserver with `stream = airplay:///shairport-sync?name=Airplay[&devicename=Octaviocast][&port=5000]`
+ 3. Configure snapserver with `stream = airplay:///shairport-sync?name=Airplay[&devicename=Snapcast][&port=5000]`
  
 
 ### Spotify
 Snapserver supports [librespot](https://github.com/librespot-org/librespot) with the `pipe` backend.
  1. Build and copy the `librespot` binary somewhere to your `PATH`, e.g. `/usr/local/bin/`
- 2. Configure snapserver with `stream = spotify:///librespot?name=Spotify[&username=<my username>&password=<my password>][&devicename=Octaviocast][&bitrate=320][&onstart=<start command>][&onstop=<stop command>][&volume=<volume in percent>][&cache=<cache dir>][&killall=true]`
+ 2. Configure snapserver with `stream = spotify:///librespot?name=Spotify[&username=<my username>&password=<my password>][&devicename=Snapcast][&bitrate=320][&onstart=<start command>][&onstop=<stop command>][&volume=<volume in percent>][&cache=<cache dir>][&killall=true]`
    * Valid bitrates are 96, 160, 320
    * `start command` and `stop command` are executed by Librespot at start/stop
-     * For example: `onstart=/usr/bin/logger -t Octaviocast Starting spotify...`
+     * For example: `onstart=/usr/bin/logger -t Snapcast Starting spotify...`
    * If `killall` is `true` (default), all running instances of Librespot will be killed. This MUST be disabled on all spotify streams by setting it to `false` if you want to use multiple spotify streams.
 
 ### Process

@@ -19,7 +19,7 @@ Clone Snapcast:
 this creates a directory `snapcast`, in the following referred to as `<snapcast dir>`.  
 Next clone the external submodules:
 
-    $ cd <octaviocast dir>/externals
+    $ cd <snapcast dir>/externals
     $ git submodule update --init --recursive
 
 Snapcast depends on boost 1.70 or higher. Since it depends on header only boost libs, boost does not need to be installed, but the boost include path must be set properly: download and extract the latest boost version and add the include path, e.g. calling `make` with prepended `ADD_CFLAGS`: `ADD_CFLAGS="-I/path/to/boost_1_7x_0/" make`.  
@@ -45,9 +45,9 @@ For Fedora (and probably RHEL, CentOS, & Scientific Linux, but untested):
     $ sudo dnf install alsa-lib-devel avahi-devel libvorbis-devel opus-devel flac-devel libstdc++-static expat
 
 ### Build Snapclient and Snapserver
-`cd` into the Octaviocast src-root directory:
+`cd` into the Snapcast src-root directory:
 
-    $ cd <octaviocast dir>
+    $ cd <snapcast dir>
     $ make
 
 Install Snapclient and/or Snapserver:
@@ -60,7 +60,7 @@ This will copy the client and/or server binary to `/usr/bin` and update init.d/s
 ### Build Snapclient
 `cd` into the Snapclient src-root directory:
 
-    $ cd <octaviocast dir>/client
+    $ cd <snapcast dir>/client
     $ make
 
 Install Snapclient
@@ -72,7 +72,7 @@ This will copy the client binary to `/usr/bin` and update init.d/systemd to star
 ### Build Snapserver
 `cd` into the Snapserver src-root directory:
 
-    $ cd <octaviocast dir>/server
+    $ cd <snapcast dir>/server
     $ make
 
 Install Snapserver
@@ -86,7 +86,7 @@ This will copy the server binary to `/usr/bin` and update init.d/systemd to star
 Debian packages can be made with
 
     $ sudo apt-get install debhelper
-    $ cd <octaviocast dir>
+    $ cd <snapcast dir>
     $ fakeroot make -f debian/rules binary
 
 If you don't have boost installed or in your standard include paths, you can call
@@ -101,7 +101,7 @@ Install the build tools and required libs:
 ### Build Snapserver
 `cd` into the Snapserver src-root directory:
 
-    $ cd <octaviocast dir>/server
+    $ cd <snapcast dir>/server
     $ gmake TARGET=FREEBSD
 
 Install Snapserver
@@ -123,7 +123,7 @@ Start and stop the server with `sudo service snapserver start` and `sudo service
 
 Snapcast is available under Gentoo's [Portage](https://wiki.gentoo.org/wiki/Portage) package management system.  Portage utilises `USE` flags to determine what components are built on compilation.  The availabe options are...
 
-    equery u octaviocast
+    equery u snapcast
     [ Legend : U - final flag setting for installation]
     [        : I - package is installed with flag     ]
     [ Colors : set, unset                             ]
@@ -143,15 +143,15 @@ These can be set either in the [global configuration](https://wiki.gentoo.org/wi
     if [ ! -d "$DIRECTORY" ]; then
       mkdir /etc/portage/package.use/media-sound
     fi
-    echo 'media-sound/octaviocast client server flac
+    echo 'media-sound/snapcast client server flac
 
 If for example you only wish to build the server and *not* the client then precede the server `USE` flag with `-` i.e.
 
-    echo 'media-sound/octaviocast client -server
+    echo 'media-sound/snapcast client -server
 
 Once `USE` flags are configured emerge snapcast as root:
 
-    $ emerge -av octaviocast
+    $ emerge -av snapcast
 
 
 Starting the client or server depends on whether you are using `systemd` or `openrc`.  To start using `openrc`:
@@ -180,7 +180,7 @@ $ brew install flac libvorbis boost opus
 ### Build Snapclient
 `cd` into the Snapclient src-root directory:
 
-    $ cd <octaviocast dir>/client
+    $ cd <snapcast dir>/client
     $ make TARGET=MACOS
 
 Install Snapclient
@@ -192,7 +192,7 @@ This will copy the client binary to `/usr/local/bin` and create a Launch Agent t
 ### Build Snapserver
 `cd` into the Snapserver src-root directory:
 
-    $ cd <octaviocast dir>/server
+    $ cd <snapcast dir>/server
     $ make TARGET=MACOS
 
 Install Snapserver
@@ -220,14 +220,14 @@ $ ./make_standalone_toolchain.py --arch x86 --api 16 --stl libc++ --install-dir 
 ### Build Snapclient
 Cross compile and install FLAC, opus, ogg, and tremor (only needed once):
 
-    $ cd <octaviocast dir>/externals
+    $ cd <snapcast dir>/externals
     $ make NDK_DIR=<android-ndk dir>-arm ARCH=arm
     $ make NDK_DIR=<android-ndk dir>-arm64 ARCH=aarch64
     $ make NDK_DIR=<android-ndk dir>-x86 ARCH=x86
   
 Compile the Snapclient:
 
-    $ cd <octaviocast dir>/client
+    $ cd <snapcast dir>/client
     $ ./build_android_all.sh <android-ndk dir> <snapdroid jniLibs dir>
 
 The binaries for `armeabi`, `arm64-v8a` and `x86` will be copied into the Android's jniLibs directory (`<snapdroid jniLibs dir>/`) and so will be bundled with the Snapcast App.
@@ -259,23 +259,23 @@ Download and install available feeds
 
 Within the `<buildroot dir>` directory create symbolic links to the Snapcast source directory `<snapcast source>` and to the OpenWrt Makefile:
 
-    $ mkdir -p <buildroot dir>/package/sxx/octaviocast
-    $ cd <buildroot dir>/package/sxx/octaviocast
-    $ ln -s <octaviocast source> src
-    $ ln -s <octaviocast source>/openWrt/Makefile.openwrt Makefile
+    $ mkdir -p <buildroot dir>/package/sxx/snapcast
+    $ cd <buildroot dir>/package/sxx/snapcast
+    $ ln -s <snapcast source> src
+    $ ln -s <snapcast source>/openWrt/Makefile.openwrt Makefile
 
 Build  
-in menuconfig in `sxx/octaviocast` select `Compile snapserver` and/or `Compile snapclient`
+in menuconfig in `sxx/snapcast` select `Compile snapserver` and/or `Compile snapclient`
 
     $ cd <buildroot dir>
     $ make defconfig
     $ make menuconfig
     $ make
 
-Rebuild Octaviocast:
+Rebuild snapcast:
 
-    $ make package/sxx/octaviocast/clean
-    $ make package/sxx/octaviocast/compile
+    $ make package/sxx/snapcast/clean
+    $ make package/sxx/snapcast/compile
 
 The packaged `ipk` files are for OpenWrt in `<buildroot dir>/bin/ar71xx/packages/base/snap[client|server]_x.x.x_ar71xx.ipk` and for LEDE `<buildroot dir>/bin/packages/mips_24kc/base/snap[client|server]_x.x.x_mips_24kc.ipk`
 
@@ -294,15 +294,15 @@ The `<snapcast dir>/buildroot` is currently set up as an external Buildroot fold
 
 Now configure buildroot with the [required packages](/buildroot/configs/snapcast_defconfig) (you can also manually add them to your project's existing defconfig):
 
-    $ cd <buildroot dir> && make BR2_EXTERNAL=<octaviocast dir>/buildroot octaviocast_defconfig
+    $ cd <buildroot dir> && make BR2_EXTERNAL=<snapcast dir>/buildroot snapcast_defconfig
 
 Then use `menuconfig` to configure the rest of your project:
 
-    $ cd <buildroot dir> && make BR2_EXTERNAL=<octaviocast dir>/buildroot menuconfig
+    $ cd <buildroot dir> && make BR2_EXTERNAL=<snapcast dir>/buildroot menuconfig
 
 And finally run the build:
 
-    $ cd <buildroot dir> && make BR2_EXTERNAL=<octaviocast dir>/buildroot
+    $ cd <buildroot dir> && make BR2_EXTERNAL=<snapcast dir>/buildroot
 
 ## Raspberry Pi (Cross compile)
 This example will show you how to add snapcast to [Buildroot](https://buildroot.org/) and compile for Raspberry Pi.
